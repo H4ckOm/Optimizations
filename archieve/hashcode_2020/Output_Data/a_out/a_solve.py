@@ -14,9 +14,10 @@ class Lib:
         #assert len(books) == len(set(books)) #rm this later for performance?
         self.book_set = set(books)
         self.books = books
-        #
-        self.books.sort(key = lambda x: book_scorer.get_score(x), reverse=True)
+        self.books.sort(key = lambda x: book_scorer.get_score(x))
+        self.books.reverse()
         self.compute_score_for_n_days()
+        
     def compute_score_for_n_days(self):
         # save a metric for each n, how many points this library can score in isolation
         # given n days.  KEY word being "in isolation" as the difficulty of the problem
@@ -29,13 +30,17 @@ class Lib:
                self.pre.append(self.pre[-1] + book_scorer.get_score(self.books[i]))
             else:
                 break
+                
     def get_score_for_n_days(self, n):
         if n < len(self.pre):
             return self.pre[n]
         else:
             return self.pre[-1]
+        
     def resort_books(self):
-        self.books.sort(key = lambda x: book_scorer.get_score(x), reverse=True)
+        self.books.sort(key = lambda x: book_scorer.get_score(x))
+        self.books.reverse()
+        
     def get_score_for_n_days_except_given_books(self, n, books):
         # if I can't have these books, how well can I score?
         book_count = 0
@@ -48,12 +53,15 @@ class Lib:
             if book_count == n * self.m:
                 break
         return ans
+    
     def total_book_score(self):
         return sum([book_scorer.get_score(b) for b in self.books])
 
 class BookScorer:
+    
     def __init__(self):
         self.scores = bs
+        
     def update_with_libs(self, libs):
         book_count = defaultdict(int)
         for l in libs:
@@ -62,22 +70,30 @@ class BookScorer:
         self.scores = dict()
         for book in book_count:
             self.scores[book] = bs[book]# * (0.5 * 1/book_count[book] + 0.5)
+            
     def update_with_books(self, books):
         for b in range(len(bs)):
             if b not in books:
                 self.scores[b] = bs[b]
+                
     def get_score(self, book):
         # if self.scores[book] != bs[book]:
         #     print(book, self.scores[book], bs[book])
         return self.scores[book]
 
-B, L, D = map(int, input().split())
-bs = [int(x) for x in input().split()]
+    
+rl = lambda: list(map(int,input().split()))
+B, L, D = rl()
+
+bs = rl()
+
 book_scorer = BookScorer()
+
 ls = []
+
 for l_id in range(L):
-    n, t, m = map(int, input().split())
-    books = [int(x) for x in input().split()]
+    n, t, m = rl()
+    books = rl()
     l = Lib(l_id, n, t, m, books)
     ls.append(l)
     print(l_id, l.total_book_score(), len(l.books), l.n, l.d, l.m)
@@ -90,14 +106,18 @@ class Sol:
         self.lib_set = set()
         self.lb = defaultdict(set)
         self.books = set()
+        
     def add_l(self, l):
         self.libs.append(l)
         self.lib_set.add(l.id)
+        
     def add(self, l, b):
         self.lb[l].add(b)
         self.books.add(b)
+    
     def score(self):
         return sum(bs[b] for b in self.books)
+    
     def str(self):
         ans = ''
         ans += '{}\n'.format(len(self.libs))
