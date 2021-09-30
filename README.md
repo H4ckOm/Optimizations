@@ -1,3 +1,3 @@
 # Optimisations
 
-My solutions to some optimisation-based contests
+My solutions to some optimisation-based contest problems
