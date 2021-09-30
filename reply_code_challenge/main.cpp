@@ -61,6 +61,19 @@ bool c1(antena a, antena b)
 building b[1000000];
 antena a[1000000];
 
+
+void sort(int *ar, int n){
+    for(int i=1; i<n; i++){
+        int t = ar[i];
+        int j = i - 1;
+        while (j >= 0 && ar[j] > t){
+            ar[j + 1] = ar[j];
+            j = j - 1;
+        }
+        ar[j + 1] = t;
+    }
+}
+
 void solve()
 {
     int h, w;
@@ -96,5 +109,9 @@ int32_t main()
     while (t--)
         solve();
     cerr << "YES\n";
+    if(t){
+        int ar[] = {4, 3, 2};
+        sort(ar, 3);
+    }
     return 0;
 }
