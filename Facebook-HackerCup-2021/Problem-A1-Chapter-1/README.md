@@ -10,9 +10,9 @@ Help her determine the minimum number of seconds required to change SS into any 
 
 ## Constraints
 
-1 <= T <= 45
-1 <= |S| <= 100
-"A" <= S[i] <= "Z"
+1 <= T <= 45 <br>
+1 <= |S| <= 100 <br>
+"A" <= S[i] <= "Z"<br>
 
 The sum of |S| across all test cases is at most 4,500
 
@@ -34,19 +34,21 @@ In the third case, Connie could replace the first, third, and fifth letters ("B"
 
 ## Sample Input
 
-6
-ABC
-F
-BANANA
-FBHC
-FOXEN
-CONSISTENCY
+6 <br>
+ABC <br>
+F <br>
+BANANA <br>
+FBHC <br>
+FOXEN <br> 
+CONSISTENCY <br>
 
 
 ## Sample Output
+```
 Case #1: 2
 Case #2: 0
 Case #3: 3
 Case #4: 4
 Case #5: 5
 Case #6: 12
+```
