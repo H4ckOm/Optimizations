@@ -1,4 +1,5 @@
 #include<stdio.h>
+
 int main()
 {
 	int n,i,j,temp,arr[50];
@@ -18,5 +19,7 @@ int main()
 	for(i=0;i<n;i++){
 		printf("%d ",arr[i]);
 	}
+	printf("Jai mata di , Mandir vahi banege ")
+	printf("ullahu akbhar")
 	return 0;
 }
